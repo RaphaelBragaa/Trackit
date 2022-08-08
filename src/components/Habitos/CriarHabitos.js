@@ -3,30 +3,27 @@ import { useState} from 'react';
 import Semana from './Semana';
 
 
-export default function CriarHabitos({selecionado,}){
-    const [dias,setDias]=useState([])
-    const [nomeHabito, setnomeHabito] = useState("");
+export default function CriarHabitos({selecionado,dias,setDias,Salvar,setnomeHabito}){
+    
+    
     const week = ['D','S','T','Q','Q','S','S']
 
-    function Salvar(){
-        console.log('ignore')
-    }
 
    
     return(
     <>
-     <form onSubmit={Salvar}>
+     
         <CriarHabito selecionado={selecionado}>
         <input type='text' placeholder='nome do hábito' onChange={(e) => setnomeHabito(e.target.value)}/>
         <Days>
-            {week.map((weeq)=>{return(<Semana  setDias={setDias} dias={dias}week={weeq}/>)})}
+            {week.map((weeq,index)=>{return(<Semana  index={index} setDias={setDias} dias={dias}week={weeq}/>)})}
         </Days>
         <Save>
         <h1>Cancelar</h1>
-        <button type="submit">Salvar</button>
+        <button onClick={Salvar}>Salvar</button>
         </Save>
         </CriarHabito>
-        </form>
+        
     </>)
 
 }

@@ -1,13 +1,16 @@
 import Header from "../shared/Header"
 import Menu from '../shared/Menu';
 import styled from 'styled-components';
-import { useState} from 'react';
+import { useState, useEffect} from 'react';
 import axios from 'axios';
 import CriarHabitos from "./CriarHabitos";
+import HabitosCadastrados from "./HabitosCadastrados";
 
 export default function Habitos({token}){
     const[selecionado,setSelecionado]=useState(false)
     const [dias,setDias]=useState([])
+    const [nomeHabito, setnomeHabito] = useState("");
+    const [cadastrado,setCadastrado] = useState([])
 
     console.log(selecionado)
     function Chama(){
@@ -15,25 +18,59 @@ export default function Habitos({token}){
         alert('CHAMA')
     }
 
-    function Salvar(event){
-        //event.preventDefault()
-        console.log(dias)
+    const body ={
+        name:nomeHabito,
+        days:dias,
+
     }
+    const config = {
+            headers: { Authorization: `Bearer ${token}` } 
+    }
+
+     useEffect(() => {
+	 	const req= axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits",config);
+
+	 	req.then(resposta => {
+	 		setCadastrado([...cadastrado,resposta.data]);
+	 	});
+	 }, []);
+
+
+    function Salvar(){
+       const requisicao= axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits',body,config)
+        
+        requisicao.then(res =>{
+                
+                console.log(res.data)
+                console.log('sucesso')
+                console.log(cadastrado)
+            } )
+        requisicao.catch(console.log('erro'))
+
+
+        console.log(dias)
+        console.log(nomeHabito)
+
+    }
+    
 
     
     console.log(token)
     return(
         <>
+        <Body>
         <Header/>
         <MeusHabitos>
             <h1>Meus hábitos</h1> 
              <div onClick={()=>setSelecionado(true)}>+</div>
         </MeusHabitos>
-        <CriarHabitos selecionado={selecionado} />
+        <CriarHabitos Salvar={Salvar} setnomeHabito={setnomeHabito} setDias={setDias} dias={dias} selecionado={selecionado} />
         <Dia> 
-         <h2>Você não tem nenhum hábito cadastrado ainda. 
+          <h2>Você não tem nenhum hábito cadastrado ainda. 
              Adicione um hábito para começar a trackear!</h2> 
+          {/* <HabitosCadastrados cadastrado={cadastrado}/> */}
         </Dia> 
+        </Body>
         
         <Menu/>
         </>
@@ -54,6 +91,7 @@ const MeusHabitos = styled.div`
     h1{
          font-weight:500;
          margin-top:5px;
+         
     }
     div{
         display:flex;
@@ -85,6 +123,11 @@ const Dia = styled.div`
 ;
     }
 }
+`
+const Body=styled.body`
+background-color: #E5E5E5;
+height:1000px;
+
 `
 
 
