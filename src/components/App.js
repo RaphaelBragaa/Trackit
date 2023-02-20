@@ -1,9 +1,9 @@
 import { useState} from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./SignIn/Login";
+import SignIn from "./SignIn/SignIn";
 import Habitos from "./Habitos/Habitos";
 import Hoje from "./Hoje/Hoje";
-import Cadastro from "./SignUp/Cadastro";
+import Cadastro from "./SignUp/SignUp";
 import UserContext from "../utils/contexts/UserContext";
 import GlobalStyle from '../assets/css/globalStyles';
 import Historico from './Historico/Historico';
@@ -16,7 +16,7 @@ export default function App(){
              <GlobalStyle/>
         <BrowserRouter>
         <Routes>
-        <Route path="/" element={<Login/>}/>
+        <Route path="/" element={<SignIn/>}/>
         <Route path="/cadastro" element={<Cadastro />}/>
         <Route path="/hoje" element={<Hoje token={token}/>}/>
         <Route path="/habitos" element={<Habitos token={token}/>}/>
