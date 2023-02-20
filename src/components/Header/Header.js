@@ -1,24 +1,13 @@
 import styled from 'styled-components';
-import { useContext } from "react";
-import UserContext from "../../utils/contexts/UserContext";
-import { useLocation } from 'react-router-dom';
-
 
 export default function Footer(){
-    const location = useLocation();
-    const{foto}=useContext(UserContext)
-    localStorage.setItem("imagem", foto);
-    console.log(foto)
-    
-
-
-
+    const test = JSON.parse(localStorage.getItem("trackit"))?.userImage;
 
     return(
         <>
         <Topo>
             <h1>TrackIt</h1>
-        <img src={localStorage.getItem("imagem")}></img> 
+        <img src={test}></img> 
         </Topo>
         </>
     )

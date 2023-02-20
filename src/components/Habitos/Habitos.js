@@ -1,5 +1,5 @@
-import Header from "../shared/Header"
-import Menu from '../shared/Menu';
+import Header from "../Header/Header"
+import Menu from '../MenuBottom/MenuBottom';
 import styled from 'styled-components';
 import { useState, useEffect} from 'react';
 import axios from 'axios';

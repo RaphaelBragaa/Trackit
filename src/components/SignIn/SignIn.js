@@ -1,13 +1,11 @@
 import { useState} from 'react';
 import { Auth } from '../../services/Auth';
-import { Link, useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ThreeDots } from  'react-loader-spinner'
-import { useContext, useEffect } from "react";
-import UserContext from "../../utils/contexts/UserContext";
+import { useEffect } from "react";
 import AuthLayout from '../AuthLayout/AuthLayout';
 
 export default function Login(){
-    //const{setToken,setFoto,token,foto}=useContext(UserContext)
     const navigate = useNavigate()
 
     const [email, setEmail] = useState("");

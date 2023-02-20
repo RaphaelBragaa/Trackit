@@ -5,8 +5,6 @@ import dayjs from 'dayjs'
 import { Link, useNavigate} from 'react-router-dom';
 import { useContext } from "react";
 import UserContext from "../../utils/contexts/UserContext";
-import Header from "../shared/Header"
-import Menu from '../shared/Menu';
 import GlobalStyle from "../../assets/css/globalStyles";
 
 export default function Hoje(){
@@ -69,22 +67,29 @@ useEffect(() => {
     return(
         <>
         <GlobalStyle/>
-        <Header/>
         <Dia>
          <h1>{dia}, {data}</h1>  
          <h2>Você não tem nenhum hábito cadastrado ainda. 
              Adicione um hábito para começar a trackear!</h2> 
-        </Dia> 
-        
-            <Menu/>   
-        
-        
+        </Dia>   
         </>
     )
 }
 
 
 const Dia = styled.div`
+ font-family: 'Lexend Deca', sans-serif;
+    h1 {
+        color: #126BA5;
+        font-size: 40px;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+    
+    h2 {
+        color: #CFCFCF;
+        font-size: 28px;
+    }
 @media (max-width: 767px){
     width:100%;
     height:100%;
@@ -102,7 +107,7 @@ const Dia = styled.div`
     h2{
         color: #CFCFCF;
         font-size:20px;
-;
+
     }
 }
 `

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Header from "../shared/Header"
-import Menu from "../shared/Menu"
+import Header from "../Header/Header"
+import Menu from "../MenuBottom/MenuBottom"
 
 export default function Historico(){
     return(

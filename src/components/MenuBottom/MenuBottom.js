@@ -1,8 +1,6 @@
 import  {  CircularProgressbar, buildStyles  }  from  'react-circular-progressbar' ; 
-import { useContext } from "react";
-import UserContext from "../../utils/contexts/UserContext";
 import styled from 'styled-components';
-import { Link, useNavigate} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Menu(){
     const percentage = 80;
@@ -35,42 +33,62 @@ export default function Menu(){
 }
 
 const Footer = styled.footer`
-@media (max-width: 767px){
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
+    height:5rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     overflow: visible;
     margin: auto;
     width: 100%;
     bottom: 0;
     position: fixed;
-    height:70px;
-    background-color:#FFFFFF;
-    
-
-    font-family:'Lexend Deca', sans-serif;
-
-    h1{
-        color:#52B6FF;
-        font-size:17.98px;
+    background-color: #FFFFFF;
+    font-family: 'Lexend Deca', sans-serif;
+    h1 {
+      color: #52B6FF;
+      font-size: 17.98px;
     }
+  
 
-
-}
-`
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    height: auto;
+    background-color: #F2F2F2;
+    font-family: 'Lexend Deca', sans-serif;
+    h1 {
+      color: #52B6FF;
+      font-size: 24px;
+    }
+  }
+`;
 
 const Bola = styled.div`
-@media (max-width: 767px){
-    width:100px; 
-    height:100px;
-    margin-bottom:50px;
+    width: 100px; 
+    height: 100px;
+    margin-bottom: 50px;
 
     .CircularProgressbar .CircularProgressbar-text {
-    fill: #3e98c7;
-    font-size: 20px;
-    dominant-baseline: middle;
-    text-anchor: middle;
-  }
+      fill: #3e98c7;
+      font-size: 20px;
+      dominant-baseline: middle;
+      text-anchor: middle;
+    }
+  
 
-}
-`
+  @media (min-width: 768px) {
+    width: 200px; 
+    height: 200px;
+    margin-bottom: 20px;
+
+    .CircularProgressbar .CircularProgressbar-text {
+      fill: #3e98c7;
+      font-size: 40px;
+      dominant-baseline: middle;
+      text-anchor: middle;
+    }
+  }
+`;
+
