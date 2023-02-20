@@ -15,13 +15,13 @@ export default function Login(){
     const [loading, setLoading] = useState("Entrar")
     const [disabled, setDisabled] = useState("")
 
-     useEffect(() => {
+      useEffect(() => {
          const isLogged = (JSON.parse(localStorage.getItem("trackit")))?.token;
       
        if (isLogged) {
             navigate("/hoje");
-         };
-   });
+          };
+    });
 
     function Login (event){
         event.preventDefault()
@@ -35,6 +35,7 @@ export default function Login(){
 
         promise
             .then(res => {
+                console.log(res)
                 localStorage.setItem(
                     "trackit",
                     JSON.stringify({ token: res.data.token, userImage: res.data.image })

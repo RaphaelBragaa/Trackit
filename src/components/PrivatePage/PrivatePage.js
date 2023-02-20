@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router-dom';
+import Header from '../shared/Header'
+import Menu from '../shared/Menu';
 
 const SEC = 1000;
 const MIN_5 = SEC * 60 * 5;
@@ -15,17 +17,14 @@ export default function PrivatePage({children}) {
 
     if (!auth) {
         return RenderError();
-      }
-      const now = +new Date();
-      const timeLogged = auth.timestamp;
-    
-      if (now - timeLogged <= MIN_5) {
-            return(
+      } else {
+        return(
                 <>
+                <Header/>
                 {children}
+                <Menu/>
                 </>
             ) 
-            } else {
-                RenderError();
-              }
-}
+      }  
+            } 
+
