@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Link, useNavigate} from 'react-router-dom';
 import { ThreeDots } from  'react-loader-spinner'
 import { useContext } from "react";
-import UserContext from "../../contexts/UserContext";
+import UserContext from "../../utils/contexts/UserContext";
 
 export default function Login(){
     const{setToken,setFoto,token,foto}=useContext(UserContext)

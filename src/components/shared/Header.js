@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useContext } from "react";
-import UserContext from "../../contexts/UserContext";
+import UserContext from "../../utils/contexts/UserContext";
 import { useLocation } from 'react-router-dom';
 
 

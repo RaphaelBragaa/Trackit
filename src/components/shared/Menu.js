@@ -1,6 +1,6 @@
 import  {  CircularProgressbar, buildStyles  }  from  'react-circular-progressbar' ; 
 import { useContext } from "react";
-import UserContext from "../../contexts/UserContext";
+import UserContext from "../../utils/contexts/UserContext";
 import styled from 'styled-components';
 import { Link, useNavigate} from 'react-router-dom';
 

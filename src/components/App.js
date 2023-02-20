@@ -1,10 +1,10 @@
 import { useState} from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./Login/Login";
+import Login from "./SignIn/Login";
 import Habitos from "./Habitos/Habitos";
 import Hoje from "./Hoje/Hoje";
-import Cadastro from "./Cadastro/Cadastro";
-import UserContext from "../contexts/UserContext";
+import Cadastro from "./SignUp/Cadastro";
+import UserContext from "../utils/contexts/UserContext";
 import GlobalStyle from '../assets/css/globalStyles';
 import Historico from './Historico/Historico';
 

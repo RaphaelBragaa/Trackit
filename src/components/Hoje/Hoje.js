@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import dayjs from 'dayjs'
 import { Link, useNavigate} from 'react-router-dom';
 import { useContext } from "react";
-import UserContext from "../../contexts/UserContext";
+import UserContext from "../../utils/contexts/UserContext";
 import Header from "../shared/Header"
 import Menu from '../shared/Menu';
 import GlobalStyle from "../../assets/css/globalStyles";
