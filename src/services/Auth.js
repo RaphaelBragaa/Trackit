@@ -2,17 +2,17 @@ import axios from 'axios';
 import dotenv from "dotenv";
 dotenv.config();
 
-const { API_URL } = process.env;
+const { REACT_APP_API_BASE_URL } = process.env;
 
 function signIn(body) {
-    const promise = axios.post(`${API_URL}/auth/login`,body)
+    const promise = axios.post(`${REACT_APP_API_BASE_URL}/auth/login`,body)
 
     return promise
 }
 
 function signUp(body) {
-    const promise = axios.post(`${API_URL}/auth/sign-up`, body)
-
+    const promise = axios.post(`${REACT_APP_API_BASE_URL}/auth/sign-up`, body)
+    console.log(process.env);
     return promise
 }
 

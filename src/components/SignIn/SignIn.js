@@ -1,22 +1,27 @@
 import { useState} from 'react';
-import axios from 'axios';
-import logo from '../../assets/images/logo.png'
-import styled from 'styled-components';
+import { Auth } from '../../services/Auth';
 import { Link, useNavigate} from 'react-router-dom';
 import { ThreeDots } from  'react-loader-spinner'
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import UserContext from "../../utils/contexts/UserContext";
 import AuthLayout from '../AuthLayout/AuthLayout';
 
 export default function Login(){
-    const{setToken,setFoto,token,foto}=useContext(UserContext)
-    
+    //const{setToken,setFoto,token,foto}=useContext(UserContext)
     const navigate = useNavigate()
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState("Entrar")
     const [disabled, setDisabled] = useState("")
+
+     useEffect(() => {
+         const isLogged = (JSON.parse(localStorage.getItem("trackit")))?.token;
+      
+       if (isLogged) {
+            navigate("/hoje");
+         };
+   });
 
     function Login (event){
         event.preventDefault()
@@ -25,29 +30,28 @@ export default function Login(){
             email,
             password,
         }
-    console.log(body)
-        const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login',body)
+
+        const promise = Auth.signIn(body);
 
         promise
             .then(res => {
-           
-             setFoto(res.data.image)
-             localStorage.setItem('foto',res.data.image)
-             setToken(res.data.token)
-              localStorage.setItem('token',res.data.token)
+                localStorage.setItem(
+                    "trackit",
+                    JSON.stringify({ token: res.data.token, userImage: res.data.image })
+                );
              navigate("/hoje")
         })
             .catch(err => {
                 console.log(err)
                 alert("Dados Incorretos")
+                setDisabled("")
+                setLoading("Entrar")
             })
     if(loading === "Entrar"){
          setLoading(<ThreeDots color="#FFFFFF" height={80} width={80} />)
          setDisabled("disabled")
     }
-
   }
-
     return(
         <>
         <AuthLayout

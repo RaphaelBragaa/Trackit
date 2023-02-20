@@ -1,14 +1,12 @@
-import { useState, useEffect, Link } from 'react';
+import { useState} from 'react';
 import axios from 'axios';
-import logo from '../../assets/images/logo.png'
-import styled from 'styled-components';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ThreeDots } from  'react-loader-spinner';
 import AuthLayout from '../AuthLayout/AuthLayout';
+import { Auth } from '../../services/Auth';
 
 
 export default function Cadastro(){
-    const {cadastro} = useParams()
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
@@ -18,7 +16,7 @@ export default function Cadastro(){
 
     const navigate = useNavigate()
 
-    function Cadastro(event){
+    function Registration(event){
         event.preventDefault()
         const body ={
             email,
@@ -26,16 +24,17 @@ export default function Cadastro(){
             image,
             password,
         }
-        const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up',body)
-        
+        const promise = Auth.signUp(body)
         promise
             .then(res => {
             console.log(res.data)
             navigate("/")
         })
             .catch(err => {
-                console.log(err)
+                console.log(err + ' ESSE ERRO')
                 alert("Dados Incorretos")
+                setDisabled("")
+                setLoading("Cadastrar")
             })
         
             if(loading === "Cadastrar"){
@@ -44,14 +43,11 @@ export default function Cadastro(){
            }
         
     }
-    function Retorno(){
-        navigate("/")
-    }
 
     return(
         <>  
        <AuthLayout
-       Auth={Cadastro}
+       Auth={Registration}
        inputs={
            <>
             <input type="email" placeholder="email" required value={email} onChange={(e) => setEmail(e.target.value)} disabled={disabled}/>
