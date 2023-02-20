@@ -39,6 +39,7 @@ export default function Login(){
                     "trackit",
                     JSON.stringify({ token: res.data.token, userImage: res.data.image })
                 );
+                
              navigate("/hoje")
         })
             .catch(err => {
