@@ -14,7 +14,7 @@ function CreateHabits (body) {
 
  function ListHabits(body) {
     const config = createHeaders()
-    const promise = axios.get(`${REACT_APP_API_BASE_URL}/habits`, body, config)
+    const promise = axios.get(`${REACT_APP_API_BASE_URL}/habits`, config)
 
     return promise
  }
@@ -25,8 +25,10 @@ function CreateHabits (body) {
     return promise
 }
 
-export const Habits = {
+const ServiceHabits = {
     CreateHabits,
     ListHabits,
     DeleteHabits
 }
+
+export default ServiceHabits;

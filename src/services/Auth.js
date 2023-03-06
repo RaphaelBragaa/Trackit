@@ -16,7 +16,9 @@ function signUp(body) {
     return promise
 }
 
-export const Auth = {
+const ServiceAuth = {
     signIn,
     signUp
 }
+
+export default ServiceAuth;

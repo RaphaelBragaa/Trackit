@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ThreeDots } from  'react-loader-spinner';
 import AuthLayout from '../AuthLayout/AuthLayout';
-import { Auth } from '../../services/Auth';
+import  ServiceAuth  from '../../services/Auth';
 
 
 export default function Cadastro(){
@@ -24,7 +24,7 @@ export default function Cadastro(){
             image,
             password,
         }
-        const promise = Auth.signUp(body)
+        const promise = ServiceAuth.signUp(body)
         promise
             .then(res => {
             console.log(res.data)

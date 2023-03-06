@@ -1,20 +1,27 @@
 import styled from 'styled-components';
 import { useState} from 'react';
 
-export default function Semanas({week,index,}){
+export default function Semana({week,setDays,days,index}){
     const [selected,setSelected]=useState(false)
-    const [selecionadoA,setSelecionadoA] = useState('#DBDBDB')
-    const [selecionadoB,setSelecionadoB] = useState('#FFFFFF')
     
-    function Check(day){
-
-   
-       
+    function Check(day) {
+      if(!selected){
+        setSelected(true)
+        setDays([...days,day])
+      }else{
+        setSelected(false)
+        const array = [...days]
+        const index = array.indexOf(day);
+        if (index > -1) {
+          array.splice(index, 1);
+          setDays(array);
+        }
+      }
     }
-
+      
     return(
         <>
-        <Botao key={index} onClick={()=>Check(index)}cor={selected}>{week}</Botao>
+        <Botao key={index} onClick={()=>Check(index, week)} cor={selected}>{week}</Botao>
         </>
     )
 }
@@ -24,8 +31,8 @@ const Botao=styled.button`
         justify-content:center;
         align-items:center;
         margin-left:10px;
-        width:35px;
-        height:35px;
+        width:30px;
+        height:30px;
         border-radius:5px;
         border:1px solid #D4D4D4;
         font-family:'Lexend Deca';

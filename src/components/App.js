@@ -1,7 +1,7 @@
 import { useState} from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignIn from "./SignIn/SignIn";
-import Habitos from "./Habitos/Habitos";
+import Habits from "./Habits/Habits";
 import Hoje from "./Hoje/Hoje";
 import Cadastro from "./SignUp/SignUp";
 import UserContext from "../utils/contexts/UserContext";
@@ -24,7 +24,7 @@ export default function App(){
                                             </PrivatePage>
                                             }/>
                 <Route path="/habitos" element={<PrivatePage>
-                                                <Habitos token={token}/>
+                                                <Habits token={token}/>
                                                 </PrivatePage>}/>
                 <Route path='/historico' element={<PrivatePage>
                                                   <Historico/>

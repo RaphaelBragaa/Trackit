@@ -1,5 +1,5 @@
 import { useState} from 'react';
-import { Auth } from '../../services/Auth';
+import ServiceAuth  from '../../services/Auth';
 import { useNavigate } from 'react-router-dom';
 import { ThreeDots } from  'react-loader-spinner'
 import { useEffect } from "react";
@@ -29,7 +29,7 @@ export default function Login(){
             password,
         }
 
-        const promise = Auth.signIn(body);
+        const promise = ServiceAuth.signIn(body);
 
         promise
             .then(res => {

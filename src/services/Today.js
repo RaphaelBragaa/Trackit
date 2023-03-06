@@ -31,9 +31,11 @@ function HistoryHabitToday () {
     return promise
 }
 
-export const Today = {
+const ServiceToday = {
     ListToday,
     CheckHabitToday,
     UncheckHabitToday,
     HistoryHabitToday
 }
+
+export default ServiceToday;

@@ -1,34 +1,48 @@
 import styled from 'styled-components';
-import { useState} from 'react';
 import Semana from './Semana';
+import ServiceHabits from '../../services/Habits';
 
 
-export default function CriarHabitos({selecionado,dias,setDias,Salvar,setnomeHabito}){
-    
-    
-    const week = ['D','S','T','Q','Q','S','S']
+export default function CreateHabit({selected,days,setDays, setNameHabit, nameHabit}){
+    const weekDays = ['D','S','T','Q','Q','S','S']
+    const body ={
+        name:nameHabit,
+        days,
+    }
+
+    function InsertHabit(){
+        const req = ServiceHabits.CreateHabits(body);
+        req
+            .then(res => console.log(res.status))
+            .catch(err => console.log(err));
+
+    }
 
 
-   
     return(
     <>
-     
-        <CriarHabito selecionado={selecionado}>
-        <input type='text' placeholder='nome do hábito' onChange={(e) => setnomeHabito(e.target.value)}/>
-        <Days>
-            {week.map((weeq,index)=>{return(<Semana  index={index} setDias={setDias} dias={dias}week={weeq}/>)})}
-        </Days>
-        <Save>
-        <h1>Cancelar</h1>
-        <button onClick={Salvar}>Salvar</button>
-        </Save>
-        </CriarHabito>
-        
-    </>)
+        <Bod selecionado={selected}>
+            <input type='text' placeholder='nome do hábito' onChange={(e) => setNameHabit(e.target.value)}/>
+            <Days>
+                 {weekDays.map((week,index)=>{return(
+                    <Semana  
+                        index={index} 
+                        setDays={setDays} 
+                        days={days} 
+                        week={week}/>
+                        )})}
+            </Days>
+            <Save>
+                <h1>Cancelar</h1>
+                <button onClick={InsertHabit}>Salvar</button>
+            </Save>
+        </Bod>
+    </>
+    )
 
 }
 
-const CriarHabito = styled.div`
+const Bod = styled.div`
 @media (max-width: 767px){
     display:${props=>(props.selecionado) ? 'flex' : 'none'};
     flex-direction:column;

@@ -1,21 +1,20 @@
 import styled from 'styled-components';
+import { useState} from 'react';
 import Semanas from './Semanas'
 import lixo from '../../assets/images/lixo.png'
 
-export default function HabitosCadastrados({cadastrado}){
-    const week = ['D','S','T','Q','Q','S','S']
+export default function HabitosCadastrados({name, days}){
+    const [selected,setSelected]=useState(false);
+
+    const week = ['D','S','T','Q','Q','S','S'];
     return(
         <>
-
-       {cadastrado.map((name,days)=>{return(
        <Habito>
-        <h1 key={name}>{name}</h1>
-        <h2>{days}</h2>  
+        <h1 key={name}>{name}</h1>  
         <Days>
-        {week.map((weeq)=>{return(<Semanas   week={weeq}/>)})}
+        {week.map((weeq)=>{return(<Semanas week={weeq}/>)})}
         </Days>
         </Habito>
-        )})}
         </>
     )
 }
@@ -24,8 +23,8 @@ const Habito=styled.div`
     @media (max-width: 767px){
         display:flex;
         flex-direction:column;
-       justify-content:center;
-       padding-left:20px;
+        justify-content:center;
+        padding-left:20px;
         height: 110px;
         width:100%;
         margin:auto;
