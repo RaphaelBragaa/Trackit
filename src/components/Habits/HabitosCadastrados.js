@@ -1,28 +1,41 @@
 import styled from 'styled-components';
 import { useState} from 'react';
-import Semanas from './Semanas'
+import Semanas from './Semanas';
+import ServiceHabits from '../../services/Habits';
+import { BsTrash3Fill } from 'react-icons/bs';
 
-export default function HabitosCadastrados({name, days}){
-    const [selected,setSelected]=useState(false);
-    console.log(days);
+export default function HabitosCadastrados({name, days, id}){
+
+    function deleteHabit(id){
+        const req = ServiceHabits.DeleteHabits(id);
+        req
+            .then(res => console.log(res.status))
+            .catch(err => console.log(err));
+    }
+    
     const week = ['D','S','T','Q','Q','S','S'];
     return(
         <>
-       <Habito>
-        <h1 key={name}>{name}</h1>  
-        <Days>
-        {week.map((weeq)=>{return(<Semanas days={days} week={weeq}/>)})}
-        </Days>
-        </Habito>
-        </>
+            <Habito>
+                <h1 key={name}>{name}</h1>  
+                <Days>
+                {week.map((weeq, index)=>{return(<Semanas days={days} week={weeq} index={index}/>)})}
+                </Days>
+                <DeleteIcon onClick={()=> deleteHabit(id)}/>
+            </Habito> 
+            
+      </>
     )
 }
+
+
 
 const Habito=styled.div`
    @media (max-width: 767px){
     display:'flex';
     flex-direction:column;
     justify-content:center;
+    position: relative;
     margin:auto;
     width:90%;
     min-height:11vh;
@@ -47,15 +60,13 @@ const Days=styled.div`
     justify-content:baseline;
     margin-top:5px;
     font-family: 'Lexend Deca';
- img{
-    width:13px;
-    height:15px;
-    margin-left:300px;
-    margin-bottom:30px;
-    z-index:1;
-    
-}
-    
-    
-}`
+} 
+`
+
+const DeleteIcon = styled(BsTrash3Fill)`
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+`
 

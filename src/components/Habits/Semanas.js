@@ -1,18 +1,24 @@
 import styled from 'styled-components';
-import { useState} from 'react';
+import { useState, useEffect} from 'react';
 
-export default function Semanas({week,index}){
+export default function Semanas({days, week,index}){
     const [selected,setSelected]=useState(false)
-    const [selecionadoA,setSelecionadoA] = useState('#DBDBDB')
-    const [selecionadoB,setSelecionadoB] = useState('#FFFFFF')
-    
-    function Check(day){
 
-    }
+    useEffect(() => {
+    function getElementByIndex(arr, num) {
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i] === num) {
+            return setSelected(true)
+          }
+        }
+        return setSelected(false)
+      }
+    getElementByIndex(days, index)
+      }, []);
 
     return(
         <>
-        <Botao key={index} onClick={()=>Check(index)}cor={selected}>{week}</Botao>
+        <Botao key={index} cor={selected}>{week}</Botao>
         </>
     )
 }

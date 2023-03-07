@@ -19,9 +19,9 @@ function CreateHabits (body) {
     return promise
  }
 
- function DeleteHabits({body, id}) {
+ function DeleteHabits(id) {
     const config = createHeaders()
-    const promise = axios.delete(`${REACT_APP_API_BASE_URL}/habits/${id}`, body, config)
+    const promise = axios.delete(`${REACT_APP_API_BASE_URL}/habits/${id}`, config)
     return promise
 }
 

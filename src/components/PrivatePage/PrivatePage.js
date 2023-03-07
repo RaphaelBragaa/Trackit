@@ -31,6 +31,7 @@ export default function PrivatePage({children}) {
 
 const Background = styled.div`
     background-color: #E5E5E5;
-    margin-bottom: 15vh;
+    margin-bottom: 10vh;
+    padding-bottom:3vh;
 `
 
