@@ -23,7 +23,6 @@ export default function Habits(){
 
     return(
         <>
-        <Body>
         <MeusHabitos>
             <h1>Meus hábitos</h1> 
              <div onClick={()=>setSelected(true)}>+</div>
@@ -33,6 +32,7 @@ export default function Habits(){
             setDays={setDays} 
             days={days} 
             selected={selected} 
+            setSelected={setSelected}
             nameHabit={nameHabit}
           /> 
         <Dia> 
@@ -42,11 +42,7 @@ export default function Habits(){
              :
              habitList.map((habit)=> {return(<HabitosCadastrados name={habit.name} days={habit.days}/>)})
             }
-          
-           
         </Dia> 
-        </Body>
-        <Menu/>
         </>
     )
 }
@@ -64,6 +60,7 @@ const MeusHabitos = styled.div`
     padding:0px 80px 0px 80px;
     h1{
          font-weight:500;
+         font-size: 1.5rem;
          margin-top:5px;
     }
     div{
@@ -81,7 +78,6 @@ const Dia = styled.div`
 @media (max-width: 767px){
     width:100%;
     height:100%;
-    padding:0px 80px 0px 80px;
     font-weight:400;
     font-family:'Lexend Deca', sans-serif;
 
@@ -94,10 +90,6 @@ const Dia = styled.div`
 ;
     }
 }
-`
-const Body=styled.body`
-background-color: #E5E5E5;
-height:1000px;
 `
 
 

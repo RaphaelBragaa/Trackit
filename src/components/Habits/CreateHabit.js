@@ -3,7 +3,7 @@ import Semana from './Semana';
 import ServiceHabits from '../../services/Habits';
 
 
-export default function CreateHabit({selected,days,setDays, setNameHabit, nameHabit}){
+export default function CreateHabit({setSelected,selected,days,setDays, setNameHabit, nameHabit}){
     const weekDays = ['D','S','T','Q','Q','S','S']
     const body ={
         name:nameHabit,
@@ -22,7 +22,7 @@ export default function CreateHabit({selected,days,setDays, setNameHabit, nameHa
     return(
     <>
         <Bod selecionado={selected}>
-            <input type='text' placeholder='nome do hábito' onChange={(e) => setNameHabit(e.target.value)}/>
+             <input type='text' placeholder='nome do hábito' onChange={(e) => setNameHabit(e.target.value)}/> 
             <Days>
                  {weekDays.map((week,index)=>{return(
                     <Semana  
@@ -32,10 +32,10 @@ export default function CreateHabit({selected,days,setDays, setNameHabit, nameHa
                         week={week}/>
                         )})}
             </Days>
-            <Save>
-                <h1>Cancelar</h1>
+             <Save>
+                <h1 onClick={()=>setSelected(false)}>Cancelar</h1>
                 <button onClick={InsertHabit}>Salvar</button>
-            </Save>
+            </Save> 
         </Bod>
     </>
     )
@@ -47,22 +47,26 @@ const Bod = styled.div`
     display:${props=>(props.selecionado) ? 'flex' : 'none'};
     flex-direction:column;
     justify-content:center;
-    padding:0px 80px 0px 80px;
+    //padding:0px 80px 0px 80px;
     margin:auto;
-    width:100%;
-    height:180px;
+    width:90%;
+    min-height:11vh;
     background-color:#FFFFFF;
     border-radius:5px;
+    padding-bottom:14px;
+    padding-top:10px;
     input{
+        //margin:auto;
+        //margin-top:0px;
+        //margin-bottom:0px;
+        width:88%;
         margin:auto;
-        margin-top:0px;
-        margin-bottom:0px;
-        width:100%;
-        height:45px;
+        margin-bottom:0;
+        height:7vh;
         border-radius:5px;
         border:1px solid #D4D4D4;
         font-family: 'Lexend Deca';
-        padding-left:15px;
+        //padding-left:15px;
        
     }
     input::placeholder{
@@ -98,7 +102,7 @@ const Save=styled.div`
         color: #FFFFFF;
         border-radius:4px;
         font-size:16px;
-
+        margin-right:5px;
     }
 }
 `
@@ -106,12 +110,10 @@ const Days=styled.div`
 @media (max-width: 767px){ 
     display:flex;
     justify-content:baseline;
-    margin-top:5px;
+    width:88%;
+    margin-top:0;
+    margin:auto;
     height:50px;
     font-family: 'Lexend Deca';
-
-
-    
-    
 }
 `
