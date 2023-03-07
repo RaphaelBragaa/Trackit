@@ -2,16 +2,8 @@ import { useState, useEffect} from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import dayjs from 'dayjs'
-import { Link, useNavigate} from 'react-router-dom';
-import { useContext } from "react";
-import UserContext from "../../utils/contexts/UserContext";
-import GlobalStyle from "../../assets/css/globalStyles";
 
 export default function Hoje(){
-    const{token,foto}=useContext(UserContext)
-    console.log(token)
-
-    
      let diaSemana = dayjs().day()
      console.log(diaSemana)
 
@@ -47,12 +39,7 @@ export default function Hoje(){
     
 
 useEffect(() => {
-     const config = {
-         headers:{
-            Authorization: `Bearer ${token}`}
-        }
-         console.log(config)
-     const promise=axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today',config);
+     const promise=axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today');
 
      promise
              .then(res => {
@@ -66,7 +53,6 @@ useEffect(() => {
 
     return(
         <>
-        <GlobalStyle/>
         <Dia>
          <h1>{dia}, {data}</h1>  
          <h2>Você não tem nenhum hábito cadastrado ainda. 

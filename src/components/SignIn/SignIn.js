@@ -1,7 +1,7 @@
 import { useState} from 'react';
 import ServiceAuth  from '../../services/Auth';
 import { useNavigate } from 'react-router-dom';
-import { ThreeDots } from  'react-loader-spinner'
+import { ThreeDots } from  'react-loader-spinner';
 import { useEffect } from "react";
 import AuthLayout from '../AuthLayout/AuthLayout';
 

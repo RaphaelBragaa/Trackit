@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 import Semana from './Semana';
 import ServiceHabits from '../../services/Habits';
-
+import { useState } from 'react';
+import { ThreeDots } from  'react-loader-spinner';
 
 export default function CreateHabit({setSelected,selected,days,setDays, setNameHabit, nameHabit}){
+    const [ disabled, setDisabled ] = useState('');
+    const [ loading, setLoading ] = useState('Salvar');
     const weekDays = ['D','S','T','Q','Q','S','S']
     const body ={
         name:nameHabit,
@@ -11,10 +14,25 @@ export default function CreateHabit({setSelected,selected,days,setDays, setNameH
     }
 
     function InsertHabit(){
+        if(loading === "Salvar"){
+            setLoading(<ThreeDots color="#FFFFFF" height={40} width={40} />)
+            setDisabled("disabled")
+       }
+   
         const req = ServiceHabits.CreateHabits(body);
         req
-            .then(res => console.log(res.status))
-            .catch(err => console.log(err));
+            .then(res => {
+                console.log(res.status)
+                setDisabled('')
+                setSelected(false)
+                setLoading('Salvar')
+                })
+            .catch(err => {
+                setDisabled('')
+                setLoading('Salvar')
+                alert('Preencha os campos corretamente !')
+                console.log(err)
+            });
 
     }
 
@@ -22,10 +40,11 @@ export default function CreateHabit({setSelected,selected,days,setDays, setNameH
     return(
     <>
         <Bod selecionado={selected}>
-             <input type='text' placeholder='nome do hábito' onChange={(e) => setNameHabit(e.target.value)}/> 
+             <input type='text' placeholder='nome do hábito' onChange={(e) => setNameHabit(e.target.value)}  disabled={disabled}/> 
             <Days>
                  {weekDays.map((week,index)=>{return(
-                    <Semana  
+                    <Semana
+                        disabled={disabled}  
                         index={index} 
                         setDays={setDays} 
                         days={days} 
@@ -34,7 +53,7 @@ export default function CreateHabit({setSelected,selected,days,setDays, setNameH
             </Days>
              <Save>
                 <h1 onClick={()=>setSelected(false)}>Cancelar</h1>
-                <button onClick={InsertHabit}>Salvar</button>
+                <button onClick={InsertHabit} disabled={disabled}>{loading}</button>
             </Save> 
         </Bod>
     </>
@@ -47,7 +66,6 @@ const Bod = styled.div`
     display:${props=>(props.selecionado) ? 'flex' : 'none'};
     flex-direction:column;
     justify-content:center;
-    //padding:0px 80px 0px 80px;
     margin:auto;
     width:90%;
     min-height:11vh;
@@ -56,9 +74,6 @@ const Bod = styled.div`
     padding-bottom:14px;
     padding-top:10px;
     input{
-        //margin:auto;
-        //margin-top:0px;
-        //margin-bottom:0px;
         width:88%;
         margin:auto;
         margin-bottom:0;
@@ -66,8 +81,6 @@ const Bod = styled.div`
         border-radius:5px;
         border:1px solid #D4D4D4;
         font-family: 'Lexend Deca';
-        //padding-left:15px;
-       
     }
     input::placeholder{
         color:#DBDBDB;
@@ -95,6 +108,9 @@ const Save=styled.div`
     }
 
     button{
+        display: flex;
+         justify-content: center;
+         align-items: center;
         height:37px;
         width:80px;
         background-color:#52B6FF;

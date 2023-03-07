@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useState} from 'react';
 
-export default function Semana({week,setDays,days,index}){
+export default function Semana({disabled, week,setDays,days,index}){
     const [selected,setSelected]=useState(false)
     
     function Check(day) {
@@ -21,7 +21,7 @@ export default function Semana({week,setDays,days,index}){
       
     return(
         <>
-        <Botao key={index} onClick={()=>Check(index, week)} cor={selected}>{week}</Botao>
+        <Botao key={index} onClick={()=>Check(index, week)} disabled={disabled} cor={selected}>{week}</Botao>
         </>
     )
 }

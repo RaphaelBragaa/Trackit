@@ -7,10 +7,14 @@ import { BsTrash3Fill } from 'react-icons/bs';
 export default function HabitosCadastrados({name, days, id}){
 
     function deleteHabit(id){
-        const req = ServiceHabits.DeleteHabits(id);
+        const result = window.confirm('Tem certeza que quer apagar esse hábito?');
+        if(result === true){
+          const req = ServiceHabits.DeleteHabits(id);
         req
             .then(res => console.log(res.status))
-            .catch(err => console.log(err));
+            .catch(err => console.log(err));  
+        }
+        
     }
     
     const week = ['D','S','T','Q','Q','S','S'];

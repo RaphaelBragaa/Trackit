@@ -1,7 +1,5 @@
-import Menu from '../MenuBottom/MenuBottom';
 import styled from 'styled-components';
 import { useState, useEffect} from 'react';
-import axios from 'axios';
 import CreateHabit from "./CreateHabit";
 import ServiceHabits from '../../services/Habits';
 import HabitosCadastrados from "./HabitosCadastrados";
@@ -25,7 +23,7 @@ export default function Habits(){
         <>
         <MeusHabitos>
             <h1>Meus hábitos</h1> 
-             <div onClick={()=>setSelected(true)}>+</div>
+             <div onClick={()=>setSelected(true)}>{selected ? (' - ') : (' + ')}</div>
         </MeusHabitos>
          <CreateHabit 
             setNameHabit={setNameHabit} 

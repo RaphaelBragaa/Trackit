@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export default function Menu(){
-    const percentage = 80;
+    const percentage = 5;
 
     return(
         <>
