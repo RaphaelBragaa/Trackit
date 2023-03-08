@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import Header from '../Header/Header'
 import Menu from '../MenuBottom/MenuBottom';
 import styled from 'styled-components';
+import UserContext from '../../utils/contexts/UserContext'
 
 const SEC = 1000;
 const MIN_5 = SEC * 60 * 5;
@@ -13,19 +15,21 @@ function RenderError() {
 }
 
 export default function PrivatePage({children}) {
-
+    const [ percent , setPercent] = useState(0);
     const auth = JSON.parse(localStorage.getItem("trackit"));
 
     if (!auth) {
         return RenderError();
       } else {
         return(
-                <Background>
+        <UserContext.Provider value={{percent, setPercent}}>
+            <Background>
                 <Header/>
                 {children}
                 <Menu/>
-                </Background>
-            ) 
+            </Background>
+        </UserContext.Provider>
+             )
       }  
             } 
 

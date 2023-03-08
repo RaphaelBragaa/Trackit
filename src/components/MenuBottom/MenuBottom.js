@@ -1,9 +1,11 @@
 import  {  CircularProgressbar, buildStyles  }  from  'react-circular-progressbar' ; 
+import { useContext } from 'react';
+import UserContext from '../../utils/contexts/UserContext';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export default function Menu(){
-    const percentage = 5;
+  const { percent } = useContext(UserContext);
 
     return(
         <>
@@ -12,7 +14,7 @@ export default function Menu(){
             <Link to="/hoje">
                 <Bola label="Background">
                     <CircularProgressbar
-                        value={percentage}
+                        value={percent}
                         text={`Hoje`}
                         background
                         backgroundPadding={6}

@@ -15,13 +15,13 @@ function ListToday() {
 
 function CheckHabitToday (id) {
     const config = createHeaders()
-    const promise = axios.post(`${REACT_APP_API_BASE_URL}/habits/${id}/check`, config);
+    const promise = axios.post(`${REACT_APP_API_BASE_URL}/habits/${id}/check`, {}, config);
     return promise
 }
 
 function UncheckHabitToday (id) {
     const config = createHeaders()
-    const promise = axios.post(`${REACT_APP_API_BASE_URL}/habits/${id}/uncheck`, config);
+    const promise = axios.post(`${REACT_APP_API_BASE_URL}/habits/${id}/uncheck`, {}, config);
     return promise
 }
 

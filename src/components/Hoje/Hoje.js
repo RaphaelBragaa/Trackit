@@ -1,4 +1,6 @@
 import { useState, useEffect} from 'react';
+import { useContext } from 'react';
+import UserContext from '../../utils/contexts/UserContext';
 import CardToday from '../CardToday/CardToday';
 import  ServiceToday from '../../services/Today';
 import styled from 'styled-components';
@@ -8,11 +10,15 @@ import 'dayjs/locale/pt-br';
 dayjs.locale('pt-br');
 
 export default function Hoje(){
+    const { percent, setPercent } = useContext(UserContext);
+    const [ habitsToday, setHabitsToday ] = useState([]);
     const hoje = dayjs().format('dddd');
     const data = dayjs().format('DD/MM/YYYY');
 
-    const [ habitsToday, setHabitsToday ] = useState([])
-useEffect(() => {
+    
+     
+
+useEffect( () => {
      const req = ServiceToday.ListToday();
 
      req
@@ -23,15 +29,31 @@ useEffect(() => {
         .catch(err => {
                  console.log(err)
         })
- },[])
+ },[habitsToday])
+
+ 
+    function countTrueValues() {
+        let count = 0
+        for (let i = 0; i < habitsToday.length; i++) {
+          if (habitsToday[i].done === true) {
+            count++ 
+          }
+        }
+        setPercent((count / habitsToday.length) * 100);
+        return count;
+      }
+
+      useEffect(() => {
+        countTrueValues();
+      }, [habitsToday])
 
 
     return(
         <>
-        <Dia>
+        <Dia percent={percent}>
          <h1>{hoje}, {data}</h1>  
          { habitsToday.length ?
-            (<h2> Nenhum hábito concluído ainda</h2>)
+            (percent ? (<h2 className='t20'> {percent}% dos hábitos concluídos</h2>) : (<h2> Nenhum hábito concluído ainda</h2>))
             :
              (<h2>Você não tem nenhum hábito cadastrado ainda. 
              Adicione um hábito para começar a trackear!</h2>)
@@ -54,10 +76,13 @@ const Dia = styled.div`
         margin-bottom: 20px;
     }
     
-    h2 {
-        color: #CFCFCF;
+     h2 {
+        color:#CFCFCF;
         font-size: 28px;
         margin-bottom: 15px;
+    }
+    .t20{
+        color:${props => props.percent ?  '#8FC549': '#CFCFCF' };
     }
 @media (max-width: 767px){
     width:100%;
