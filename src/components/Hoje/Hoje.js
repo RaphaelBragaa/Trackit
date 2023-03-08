@@ -1,62 +1,44 @@
 import { useState, useEffect} from 'react';
-import axios from 'axios';
+import CardToday from '../CardToday/CardToday';
+import  ServiceToday from '../../services/Today';
 import styled from 'styled-components';
-import dayjs from 'dayjs'
+import dayjs from 'dayjs';
+import 'dayjs/locale/pt-br';
+
+dayjs.locale('pt-br');
 
 export default function Hoje(){
-     let diaSemana = dayjs().day()
-     console.log(diaSemana)
+    const hoje = dayjs().format('dddd');
+    const data = dayjs().format('DD/MM/YYYY');
 
-     const [dia,setDia] = useState('')
-     const [data,setData] = useState(dayjs().format('DD/MM/YYYY'))
-
-     useEffect(() => {
-     if(diaSemana === 0){
-         setDia("Domingo")
-     }
-     if(diaSemana === 1){
-         setDia("Segunda")
-     }
-     if(diaSemana === 2){
-         setDia("Terça")
-     }
-     if(diaSemana === 3){
-         setDia("Quarta")
-     }
-     if(diaSemana === 4){
-         setDia("Quinta")
-     }
-     if(diaSemana === 5){
-        setDia('Sexta')
-     }
-     if(diaSemana === 6){
-         setDia("Sábado")
-     }
-    },[])
-
-    
-
-    
-
+    const [ habitsToday, setHabitsToday ] = useState([])
 useEffect(() => {
-     const promise=axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today');
+     const req = ServiceToday.ListToday();
 
-     promise
-             .then(res => {
+     req
+        .then(res => {
+             setHabitsToday(res.data)
              console.log(res.data)
          })
-             .catch(err => {
+        .catch(err => {
                  console.log(err)
-             })
+        })
  },[])
 
 
     return(
         <>
         <Dia>
-         <h1>{dia}, {data}</h1>  
-         <h2>Você não tem nenhum hábito cadastrado ainda. 
-             Adicione um hábito para começar a trackear!</h2> 
+         <h1>{hoje}, {data}</h1>  
+         { habitsToday.length ?
+            (<h2> Nenhum hábito concluído ainda</h2>)
+            :
+             (<h2>Você não tem nenhum hábito cadastrado ainda. 
+             Adicione um hábito para começar a trackear!</h2>)
+             
+            }
+         {habitsToday.map((today) => {return (<CardToday today={today}/>)})}
+       
         </Dia>   
         </>
     )
@@ -75,6 +57,7 @@ const Dia = styled.div`
     h2 {
         color: #CFCFCF;
         font-size: 28px;
+        margin-bottom: 15px;
     }
 @media (max-width: 767px){
     width:100%;
@@ -93,7 +76,6 @@ const Dia = styled.div`
     h2{
         color: #CFCFCF;
         font-size:20px;
-
     }
 }
 `
