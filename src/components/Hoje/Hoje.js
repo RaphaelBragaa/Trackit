@@ -39,8 +39,9 @@ useEffect( () => {
             count++ 
           }
         }
-        setPercent((count / habitsToday.length) * 100);
-        setPercent(percent.toFixed(0))
+        const value = (count / habitsToday.length) * 100
+        setPercent(value.toFixed(0));
+        //setPercent(percent.toFixed(0))
         return count;
       }
 
