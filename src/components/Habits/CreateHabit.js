@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Semana from './Semana';
+import WeekSelector from './WeekSelector';
 import ServiceHabits from '../../services/Habits';
 import { useState } from 'react';
 import { ThreeDots } from  'react-loader-spinner';
@@ -43,7 +43,7 @@ export default function CreateHabit({setSelected,selected,days,setDays, setNameH
              <input type='text' placeholder='nome do hábito' onChange={(e) => setNameHabit(e.target.value)}  disabled={disabled}/> 
             <Days>
                  {weekDays.map((week,index)=>{return(
-                    <Semana
+                    <WeekSelector
                         disabled={disabled}  
                         index={index} 
                         setDays={setDays} 
@@ -127,7 +127,8 @@ const Days=styled.div`
     display:flex;
     justify-content:baseline;
     width:88%;
-    margin-top:0;
+    padding-top:10px;
+    padding-right:13px;
     margin:auto;
     height:50px;
     font-family: 'Lexend Deca';

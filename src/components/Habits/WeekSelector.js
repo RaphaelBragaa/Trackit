@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useState} from 'react';
 
-export default function Semana({disabled, week,setDays,days,index}){
+export default function WeekSelector({disabled, week,setDays,days,index}){
     const [selected,setSelected]=useState(false)
     
     function Check(day) {

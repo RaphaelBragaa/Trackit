@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useState, useEffect} from 'react';
 import CreateHabit from "./CreateHabit";
 import ServiceHabits from '../../services/Habits';
-import HabitosCadastrados from "./HabitosCadastrados";
+import RegisteredHabits from "./RegisteredHabits";
 
 export default function Habits(){
     const [view, setView] = useState(false);
@@ -21,10 +21,10 @@ export default function Habits(){
 
     return(
         <>
-        <MeusHabitos>
+        <Container>
             <h1>Meus hábitos</h1> 
              <div onClick={()=>setSelected(true)}>{selected ? (' - ') : (' + ')}</div>
-        </MeusHabitos>
+        </Container>
          <CreateHabit 
             setNameHabit={setNameHabit} 
             setDays={setDays} 
@@ -38,14 +38,14 @@ export default function Habits(){
              ( <h2>Você não tem nenhum hábito cadastrado ainda. 
              Adicione um hábito para começar a trackear !</h2> )
              :
-             habitList.map((habit)=> {return(<HabitosCadastrados id={habit.id} name={habit.name} days={habit.days}/>)})
+             habitList.map((habit)=> {return(<RegisteredHabits id={habit.id} name={habit.name} days={habit.days}/>)})
             }
         </Dia> 
         </>
     )
 }
 
-const MeusHabitos = styled.div`
+const Container = styled.div`
 @media (max-width: 767px){
     display:flex;
     justify-content:space-between;

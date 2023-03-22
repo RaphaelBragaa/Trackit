@@ -2,11 +2,11 @@ import { useState} from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignIn from "./SignIn/SignIn";
 import Habits from "./Habits/Habits";
-import Hoje from "./Hoje/Hoje";
+import TodayHabitsTracker from "./TodayHabitsTracker/TodayHabitsTracker";
 import Cadastro from "./SignUp/SignUp";
 import UserContext from "../utils/contexts/UserContext";
 import GlobalStyle from '../assets/css/globalStyles';
-import Historico from './Historico/Historico';
+import HistoryCalendar from './HistoryCalendar/HistoryCalendar';
 import PrivatePage from './PrivatePage/PrivatePage';
 
 export default function App(){
@@ -20,14 +20,14 @@ export default function App(){
                 <Route path="/" element={<SignIn/>}/>
                 <Route path="/cadastro" element={<Cadastro />}/>
                 <Route path="/hoje" element={<PrivatePage>
-                                            <Hoje token={token}/>
+                                            <TodayHabitsTracker/>
                                             </PrivatePage>
                                             }/>
                 <Route path="/habitos" element={<PrivatePage>
-                                                <Habits token={token}/>
+                                                <Habits/>
                                                 </PrivatePage>}/>
                 <Route path='/historico' element={<PrivatePage>
-                                                  <Historico/>
+                                                  <HistoryCalendar/>
                                                   </PrivatePage>}/>
             </Routes>
         </BrowserRouter>

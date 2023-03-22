@@ -5,7 +5,7 @@ import  'react-calendar/dist/Calendar.css'
 import ServiceToday from '../../services/Today';
 import dayjs from 'dayjs';
 
-export default function Historico(){
+export default function HistoryCalendar(){
     const [calendarValue, setCalendarValue] = useState(new Date());
     const [habitsHistory, setHabitsHistory] = useState([]);
     

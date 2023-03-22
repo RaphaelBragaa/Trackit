@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useState, useEffect} from 'react';
 
-export default function Semanas({days, week,index}){
+export default function Week({days, week,index}){
     const [selected,setSelected]=useState(false)
 
     useEffect(() => {

@@ -9,14 +9,11 @@ import 'dayjs/locale/pt-br';
 
 dayjs.locale('pt-br');
 
-export default function Hoje(){
+export default function TodayHabitsTracker(){
     const { percent, setPercent } = useContext(UserContext);
     const [ habitsToday, setHabitsToday ] = useState([]);
     const hoje = dayjs().format('dddd');
     const data = dayjs().format('DD/MM/YYYY');
-
-    
-     
 
 useEffect( () => {
      const req = ServiceToday.ListToday();
@@ -41,7 +38,6 @@ useEffect( () => {
         }
         const value = (count / habitsToday.length) * 100
         setPercent(value.toFixed(0));
-        //setPercent(percent.toFixed(0))
         return count;
       }
 
@@ -62,7 +58,6 @@ useEffect( () => {
              
             }
          {habitsToday.map((today) => {return (<CardToday today={today}/>)})}
-       
         </Dia>   
         </>
     )

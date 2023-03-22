@@ -1,11 +1,10 @@
 import styled from 'styled-components';
-import { useState} from 'react';
-import Semanas from './Semanas';
+import Week from './Week';
 import ServiceHabits from '../../services/Habits';
 import { BsTrash3Fill } from 'react-icons/bs';
 
-export default function HabitosCadastrados({name, days, id}){
-
+export default function RegisteredHabits({name, days, id}){
+ 
     function deleteHabit(id){
         const result = window.confirm('Tem certeza que quer apagar esse hábito?');
         if(result === true){
@@ -23,7 +22,7 @@ export default function HabitosCadastrados({name, days, id}){
             <Habito>
                 <h1 key={name}>{name}</h1>  
                 <Days>
-                {week.map((weeq, index)=>{return(<Semanas days={days} week={weeq} index={index}/>)})}
+                {week.map((weeq, index)=>{return(<Week days={days} week={weeq} index={index}/>)})}
                 </Days>
                 <DeleteIcon onClick={()=> deleteHabit(id)}/>
             </Habito> 
