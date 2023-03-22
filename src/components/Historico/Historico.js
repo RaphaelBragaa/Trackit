@@ -1,16 +1,47 @@
 import styled from 'styled-components';
-import Header from "../Header/Header"
-import Menu from "../MenuBottom/MenuBottom"
+import { useState, useEffect} from 'react';
+import Calendar from 'react-calendar';
+import  'react-calendar/dist/Calendar.css'
+import ServiceToday from '../../services/Today';
+import dayjs from 'dayjs';
 
 export default function Historico(){
+    const [calendarValue, setCalendarValue] = useState(new Date());
+    const [habitsHistory, setHabitsHistory] = useState([]);
+    
+      useEffect(() => {
+        const req = ServiceToday.HistoryHabitToday();
+        req.then(res => {
+            setHabitsHistory(res.data);
+        });
+      }, []);
+      
+
     return(
         <>
-        <Header/>
-        <Banner>
-            <h1>Histórico</h1>
-            <h2>Em breve você poderá ver o histórico dos seus hábitos aqui!</h2>
-        </Banner>
-        <Menu/>
+            <Banner>
+                <h1>Histórico</h1>
+            </Banner>
+            <Container>
+                <Calendar className="my-calendar"
+                value={calendarValue}
+                onChange={setCalendarValue}
+                formatDay={(locale, date) => {
+                const day = dayjs(date).format('DD');
+                const habitHistory = habitsHistory.find((h) => h.day === dayjs(date).format('DD/MM/YYYY'));
+                if (habitHistory) {
+                    const doneHabits = habitHistory.habits.filter((h) => h.done);
+                    if (doneHabits.length === habitHistory.habits.length) {
+                    return <div style={{ backgroundColor: '#8CC654', borderRadius: '10px', height: '25px',  lineHeight: '25px', fontWeight: '500' }} >{day}</div>;
+                    }
+                    if (doneHabits.length < habitHistory.habits.length) {
+                    return <div style={{ backgroundColor: '#EA5766', borderRadius: '5px',  height: '25px',  lineHeight: '25px', fontWeight: '500'   }}>{day}</div>;
+                    }
+                }
+                return <div>{day}</div>;
+                }}
+                />
+            </Container>
         </>
     )
 }
@@ -27,12 +58,20 @@ const Banner = styled.div`
         font-size:35px;
         font-weight:500;
     }
+}
+`
+const Container = styled.div`
+@media (max-width: 767px){
+    width:100%;
+    height:70vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    h2{
-        margin-top:12px;
-        font-size:25px;
-        color:#666666;
+    .my-calendar {
+    border-radius: 10px;
+    height: 75%;
+    border:none; 
     }
-
 }
 `
