@@ -51,7 +51,6 @@ const Footer = styled.footer`
       font-size: 17.98px;
     }
   
-
   @media (min-width: 768px) {
     display: flex;
     justify-content: space-between;
@@ -71,7 +70,6 @@ const Bola = styled.div`
     width: 100px; 
     height: 100px;
     margin-bottom: 50px;
-
     .CircularProgressbar .CircularProgressbar-text {
       fill: #3e98c7;
       font-size: 20px;
@@ -79,12 +77,10 @@ const Bola = styled.div`
       text-anchor: middle;
     }
   
-
   @media (min-width: 768px) {
     width: 200px; 
     height: 200px;
     margin-bottom: 20px;
-
     .CircularProgressbar .CircularProgressbar-text {
       fill: #3e98c7;
       font-size: 40px;
@@ -93,4 +89,3 @@ const Bola = styled.div`
     }
   }
 `;
-

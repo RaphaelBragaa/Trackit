@@ -31,7 +31,7 @@ img{
     margin-top:3rem;
 }
 input{
-    width:100%;
+    width:30%;
     height:43px;
     border: 1px solid #D4D4D4;
     border-radius:3px;
@@ -43,6 +43,7 @@ input::placeholder{
     margin-left:105px;
     font-size:18px;
     color:#DBDBDB;
+    width:100%;
 }
 @media (max-width: 767px){
     width:80%;

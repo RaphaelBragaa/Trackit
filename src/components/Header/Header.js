@@ -36,7 +36,6 @@ export default function Footer(){
 }
 
 const Topo = styled.header`
-    @media (max-width: 767px){
         display:flex;
         align-items:center;
         justify-content:space-between;
@@ -64,8 +63,6 @@ const Topo = styled.header`
             width:51px;
             border-radius:98.5px;
         }
-    }
-
 `;
 
 const slideLeftAnimation = keyframes`
