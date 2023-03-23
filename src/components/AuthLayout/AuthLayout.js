@@ -31,7 +31,7 @@ img{
     margin-top:3rem;
 }
 input{
-    width:30%;
+    width:100%;
     height:43px;
     border: 1px solid #D4D4D4;
     border-radius:3px;
